@@ -1,5 +1,13 @@
 # 一个新的MyBatis-Plus脚手架
-[参考视频](https://www.bilibili.com/video/BV19K4y1L7MT?p=65)
+[参考视频](https://www.bilibili.com/video/BV19K4y1L7MT?p=65)  
+这个视频里面讲了MyBatis-Plus自动配置原理。可以多听几遍！  
+自动配置以下
+- SqlSessionFactory  
+- mapperLocations，有默认值(在MybatisPlusProperties.java中)  
+    - classpath*:/mapper/**/*.xml  
+    - classpath*是多个jar包中，只要在类路径下。  
+- SqlSessionTemplate  
+
 
 ```shell
 Quick setup — if you’ve done this kind of thing before

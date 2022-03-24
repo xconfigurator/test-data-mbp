@@ -44,11 +44,20 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- MyBatis-Plusf -->
+        <!-- MyBatis-Plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.4.3</version>
+            <version>3.5.1</version>
+        </dependency>
+
+        <!-- Dynamic DataSource -->
+        <!-- https://baomidou.com/pages/a61e1b/#%E6%96%87%E6%A1%A3-documentation -->
+        <!-- doc https://www.kancloud.cn/tracy5546/dynamic-datasource/2264611 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+            <version>3.5.1</version>
         </dependency>
 
         <!-- Swagger API文档 -->

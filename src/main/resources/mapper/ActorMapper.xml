@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="liuyang.testdatambp.modules.actor.generator.mapper.ActorMapper">
+
+    <resultMap id="BaseResultMap" type="liuyang.testdatambp.modules.actor.generator.entity.Actor">
+            <id property="actorId" column="actor_id" jdbcType="SMALLINT"/>
+            <result property="firstName" column="first_name" jdbcType="VARCHAR"/>
+            <result property="lastName" column="last_name" jdbcType="VARCHAR"/>
+            <result property="lastUpdate" column="last_update" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        actor_id,first_name,last_name,
+        last_update
+    </sql>
+</mapper>

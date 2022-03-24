@@ -6,9 +6,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScans(
+@MapperScans({
         @MapperScan("liuyang.testdatambp.modules.user.generated.mapper")
-)
+        , @MapperScan("liuyang.testdatambp.modules.actor.generator.mapper")
+})
 public class TestDataMbpApplication {
 
     public static void main(String[] args) {

@@ -1,6 +1,31 @@
+#spring:
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/test?useSSL=false&serverTimezone=GMT%2B8
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: root
+#    password: 123456
+
+# https://baomidou.com/pages/a61e1b/#%E6%96%87%E6%A1%A3-documentation
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/test?useSSL=false&serverTimezone=GMT%2B8
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: 123456
+    dynamic:
+      # 设置默认的数据源或者数据源组，默认值即为master
+      primary: mp
+      # 严格匹配数据源，默认false。true: 未匹配到指定数据源时抛异常，false:未匹配到指定数据源时使用默认数据源
+      strict: false
+      datasource:
+        mp:
+          url: jdbc:mysql://39.104.173.57:3306/mp?useSSL=false&serverTimezone=GMT%2B8
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: 123456
+        sakila:
+          url: jdbc:mysql://39.104.173.57:3306/sakila?useSSL=false&serverTimezone=GMT%2B8
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: 123456
+        test:
+          url: jdbc:mysql://39.104.173.57:3306/test?useSSL=false&serverTimezone=GMT%2B8
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: 123456

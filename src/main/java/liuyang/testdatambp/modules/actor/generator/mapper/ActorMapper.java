@@ -2,6 +2,7 @@ package liuyang.testdatambp.modules.actor.generator.mapper;
 
 import liuyang.testdatambp.modules.actor.generator.entity.Actor;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Repository;
 
 /**
 * @author xconf

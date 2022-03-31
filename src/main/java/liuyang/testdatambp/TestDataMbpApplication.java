@@ -4,12 +4,10 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.annotation.MapperScans;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
-@MapperScans({
-        @MapperScan("liuyang.testdatambp.modules.user.generated.mapper")
-        , @MapperScan("liuyang.testdatambp.modules.actor.generator.mapper")
-})
+@EnableCaching
 public class TestDataMbpApplication {
 
     public static void main(String[] args) {

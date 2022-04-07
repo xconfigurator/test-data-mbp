@@ -41,7 +41,7 @@ public class ActorMapperTest {
     @Test
     public void testPaginationCustomization() {
         Page<Actor> page = new Page<>(1, 200);
-        actorMapper.selectPageActorVOCustomize(page, "E");
+        actorMapper.selectPageActorVOCustomize(page, "GUINESS");// E
         page.getRecords().stream().forEach(System.out::println);
     }
 }

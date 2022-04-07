@@ -24,7 +24,10 @@ public interface ActorMapper extends BaseMapper<Actor> {
     // https://baomidou.com/pages/97710a/#paginationinnerinterceptor
     // SQL语句中不需要使用page，但如果想在自定义的SQL语句中使用分页插件，那么第一个参数就必须是IPage。
     // 1. 参考视频 44 - 自定义分页功能
-    // 2. MyBatisX插件： generate-statement
+    // 2. MyBatisX插件： step1：写方法名(命名约定) step2：Alt + Enter。
+    //      MybatisX https://baomidou.com/pages/ba5b24/ 有一些命名约定 联想一下Spring Data JPA的相关内容。
+    //      借助MybatisX，可以提供类似使用Spring Data JPA的体验。
+    // 3. IntelliJ 快捷键 Alt + Enter 有惊喜！ 只写一个方法名 再按Alt + Enter
     IPage<Actor> selectPageActorVOCustomize(@Param("page") IPage<?> page, String lastName);
 }
 

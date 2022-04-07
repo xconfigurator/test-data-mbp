@@ -15,4 +15,14 @@
         actor_id,first_name,last_name,
         last_update
     </sql>
+
+    <!-- IPage<Actor> selectPageActorVOCustomize(@Param("page") IPage<?> page, String lastName); -->
+    <!--
+        可以设置类型别名 application.yml mybatis-plus.type-aliases-package:
+        设置好之后就可以使用类名，且不区分大小写。
+    -->
+    <select id="selectPageActorVOCustomize"
+            resultType="liuyang.testdatambp.modules.actor.generator.entity.Actor">
+        select * from actor where last_name like concat('%', #{lastName}, '%')
+    </select>
 </mapper>

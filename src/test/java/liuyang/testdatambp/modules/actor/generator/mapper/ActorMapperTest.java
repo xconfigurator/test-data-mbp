@@ -24,7 +24,10 @@ public class ActorMapperTest {
     public void testPagination() {
         // liuyang 20220325 实测：因为标注是标在了service上，所以直接掉mapper貌似数据源切换不起效。
         //                  解决：把@DS注解到Mapper接口上即可
-        Page<Actor> page = new Page<>(2, 5);
+        // IntelliJ 快捷键
+        // 光标移到Page上， Ctrl + H
+        // 光标移到Page上， Ctrl + P
+        Page<Actor> page = new Page<>(2, 5);// current: 当前页页码，size:每页显示条数。详细参见代码注释。
         actorMapper.selectPage(page, Wrappers.<Actor>lambdaQuery().orderByAsc(Actor::getActorId));
         page.getRecords().stream().forEach(System.out::println);
         page.getCurrent();// 当前页码
@@ -33,5 +36,12 @@ public class ActorMapperTest {
         page.getTotal();// 总记录数
         page.hasNext();
         page.hasPrevious();
+    }
+
+    @Test
+    public void testPaginationCustomization() {
+        Page<Actor> page = new Page<>(1, 200);
+        actorMapper.selectPageActorVOCustomize(page, "E");
+        page.getRecords().stream().forEach(System.out::println);
     }
 }

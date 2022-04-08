@@ -1,6 +1,7 @@
 package liuyang.testdatambp.modules.actor.generator.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import liuyang.testdatambp.modules.actor.generator.entity.Actor;
@@ -25,7 +26,7 @@ public class ActorMapperTest {
         // liuyang 20220325 实测：因为标注是标在了service上，所以直接掉mapper貌似数据源切换不起效。
         //                  解决：把@DS注解到Mapper接口上即可
         // IntelliJ 快捷键
-        // 光标移到Page上， Ctrl + H
+        // 光标移到Page上， Ctrl + H 或者光标选中IPage-->右键-->Diagrams-->Show Diagram Popup...
         // 光标移到Page上， Ctrl + P
         Page<Actor> page = new Page<>(2, 5);// current: 当前页页码，size:每页显示条数。详细参见代码注释。
         actorMapper.selectPage(page, Wrappers.<Actor>lambdaQuery().orderByAsc(Actor::getActorId));

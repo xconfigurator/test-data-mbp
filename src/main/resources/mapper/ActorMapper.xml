@@ -20,6 +20,7 @@
     <!--
         可以设置类型别名 application.yml mybatis-plus.type-aliases-package:
         设置好之后就可以使用类名，且不区分大小写。
+        20220407 实测 ok
     -->
     <select id="selectPageActorVOCustomize"
             resultType="liuyang.testdatambp.modules.actor.generator.entity.Actor">

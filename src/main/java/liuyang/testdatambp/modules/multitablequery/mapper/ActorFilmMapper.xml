@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="liuyang.testdatambp.modules.multitablequery.mapper.ActorFilmMapper">
+    <select id="selectAllPagination" resultType="liuyang.testdatambp.modules.multitablequery.entity.ActorFilm">
+        SELECT
+            a.*
+             , f.title
+             , f.description
+        FROM `actor` a
+                 left join `film_actor` fa on a.actor_id = fa.actor_id
+                 left join `film` f on fa.film_id = f.film_id
+    </select>
+    <select id="selectAllPaginationCondition"
+            resultType="liuyang.testdatambp.modules.multitablequery.entity.ActorFilm">
+        SELECT
+            a.*
+             , f.title
+             , f.description
+        FROM `actor` a
+                 left join `film_actor` fa on a.actor_id = fa.actor_id
+                 left join `film` f on fa.film_id = f.film_id
+        WHERE a.last_name like concat('%', #{lastName}, '%')
+    </select>
+</mapper>

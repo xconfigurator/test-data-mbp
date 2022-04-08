@@ -31,6 +31,8 @@ spring:
           password: 123456
 
 # 查看MyBatis-Plus生成的SQL
+# 1. @MapperScan -> *Mapper.java
+# 2. mybatis-plus.mapper-locations -> *.xml 或者将*.xml放入默认路径，比如resources/mapper/
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
@@ -39,3 +41,17 @@ mybatis-plus:
   #type-aliases-package:
   # 配置通用枚举包扫描 + @EnumValue 问题（liuyang）: 如果在多个包下配置了enum该怎么办？202204071319
   #type-enums-package:
+  # xml 202204081610 有问题！
+  #mapper-locations:
+  #  - classpath:/mapper/*.xml
+  #  - classpath:/liuyang/testdatambp/modules/user/generated/mapper/mapping/UserMapper.xml
+  mapper-locations:
+    # 1. 默认扫描位置（如果指定了mapper-locations，则框架不再扫描默认位置，如果需要，比如还是有配置文件放入了resources/mapper/，则必须明确配置！）
+    - classpath*:/mapper/**/*.xml
+    # 2. 定制位置 - 配置方法1。注意要配合pom.xml中build里面的配置，否则会报.xml找不到，并且添加配置后要从新刷新maven配置，在进行单测或其他动作。
+    #- classpath:/liuyang/testdatambp/modules/user/generated/mapper/mapping/UserMapper.xml
+    # 2. 定制位置 - 配置方法2。同样需要配合pom.xml中build里面的配置。
+    - classpath*:/liuyang/testdatambp/modules/user/generated/mapper/mapping/UserMapper.xml
+    # 实测貌似这个配置可以搞定所有（推荐）
+    - classpath*:**/*Mapper.xml
+    #- classpath*:/**/mapping/*.xml

@@ -37,7 +37,7 @@ public class ActorFilmMapperTest {
         IPage<ActorFilm> page = new Page<>(1, 100);
         actorFilmMapper.selectAllPaginationCondition(page, "GUINESS");
         page.getRecords().stream().forEach(System.out::println);
-        log.info("page.getTotal() =  {}", page.getTotal());
+        log.info("page.getTotal() =  {}", page.getTotal());// 这个总记录数貌似有点问题？！ 202204081649
         log.info("page.getRecords().size() = {}", page.getRecords().size());
     }
 }

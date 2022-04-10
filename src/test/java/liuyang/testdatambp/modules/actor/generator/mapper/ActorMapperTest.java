@@ -28,6 +28,7 @@ public class ActorMapperTest {
         // IntelliJ 快捷键
         // 光标移到Page上， Ctrl + H 或者光标选中IPage-->右键-->Diagrams-->Show Diagram Popup...
         // 光标移到Page上， Ctrl + P
+        // 光标移到Page上， Ctrl + Alt + Shift + u 有惊喜。
         Page<Actor> page = new Page<>(2, 5);// current: 当前页页码，size:每页显示条数。详细参见代码注释。
         actorMapper.selectPage(page, Wrappers.<Actor>lambdaQuery().orderByAsc(Actor::getActorId));
         page.getRecords().stream().forEach(System.out::println);

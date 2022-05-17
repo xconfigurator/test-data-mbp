@@ -2,15 +2,11 @@ package liuyang.testdatambp.modules.multitablequery.mapper;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import liuyang.testdatambp.modules.actor.generator.mapper.ActorMapper;
 import liuyang.testdatambp.modules.multitablequery.entity.ActorFilm;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import javax.annotation.Resource;
 
 /**
  * @author liuyang(wx)

@@ -26,4 +26,50 @@
             resultType="liuyang.testdatambp.modules.actor.generator.entity.Actor">
         select * from actor where last_name like concat('%', #{lastName}, '%')
     </select>
+    <insert id="insertSelective">
+        insert into actor
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="actorId != null">actor_id,</if>
+            <if test="firstName != null">first_name,</if>
+            <if test="lastName != null">last_name,</if>
+            <if test="lastUpdate != null">last_update,</if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="actorId != null">#{actorId,jdbcType=SMALLINT},</if>
+            <if test="firstName != null">#{firstName,jdbcType=VARCHAR},</if>
+            <if test="lastName != null">#{lastName,jdbcType=VARCHAR},</if>
+            <if test="lastUpdate != null">#{lastUpdate,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <delete id="deleteByActorId">
+        delete
+        from actor
+        where actor_id = #{actorId,jdbcType=NUMERIC}
+    </delete>
+    <update id="updateFirstNameByActorId">
+        update actor
+        set first_name = #{firstName,jdbcType=VARCHAR}
+        where actor_id = #{actorId,jdbcType=NUMERIC}
+    </update>
+    <select id="selectByLastNameLike" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from actor
+        where
+        last_name like #{lastName,jdbcType=VARCHAR}
+    </select>
+    <select id="selectAllByLastUpdateBetween" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from actor
+        where
+        last_update between #{beginLastUpdate} and #{endLastUpdate}
+    </select>
+    <select id="selectAllOrderByLastName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from actor
+        order by lastName
+    </select>
 </mapper>

@@ -15,17 +15,20 @@ spring:
       strict: false
       datasource:
         mp:
-          url: jdbc:mysql://39.104.173.57:3306/mp?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=utf-8
+          #url: jdbc:mysql://39.104.173.57:3306/mp?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=utf-8
+          url: jdbc:mysql://localhost:3306/mp?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=utf-8
           driver-class-name: com.mysql.cj.jdbc.Driver
           username: root
           password: 123456
         sakila:
-          url: jdbc:mysql://39.104.173.57:3306/sakila?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=utf-8
+          #url: jdbc:mysql://39.104.173.57:3306/sakila?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=utf-8
+          url: jdbc:mysql://localhost:3306/sakila?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=utf-8
           driver-class-name: com.mysql.cj.jdbc.Driver
           username: root
           password: 123456
         test:
-          url: jdbc:mysql://39.104.173.57:3306/test?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=utf-8
+          #url: jdbc:mysql://39.104.173.57:3306/test?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=utf-8
+          url: jdbc:mysql://localhost:3306/test?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=utf-8
           driver-class-name: com.mysql.cj.jdbc.Driver
           username: root
           password: 123456
@@ -47,11 +50,11 @@ mybatis-plus:
   #  - classpath:/liuyang/testdatambp/modules/user/generated/mapper/mapping/UserMapper.xml
   mapper-locations:
     # 1. 默认扫描位置（如果指定了mapper-locations，则框架不再扫描默认位置，如果需要，比如还是有配置文件放入了resources/mapper/，则必须明确配置！）
-    - classpath*:/mapper/**/*.xml
+    #- classpath*:/mapper/**/*.xml
     # 2. 定制位置 - 配置方法1。注意要配合pom.xml中build里面的配置，否则会报.xml找不到，并且添加配置后要从新刷新maven配置，在进行单测或其他动作。
     #- classpath:/liuyang/testdatambp/modules/user/generated/mapper/mapping/UserMapper.xml
     # 2. 定制位置 - 配置方法2。同样需要配合pom.xml中build里面的配置。
-    - classpath*:/liuyang/testdatambp/modules/user/generated/mapper/mapping/UserMapper.xml
-    # 实测貌似这个配置可以搞定所有（推荐）
+    #- classpath*:/liuyang/testdatambp/modules/user/generated/mapper/mapping/UserMapper.xml
+    # 实测这个配置可以搞定所有(Actor ok, User ok, ActorFilm ok)（推荐）
     - classpath*:**/*Mapper.xml
     #- classpath*:/**/mapping/*.xml

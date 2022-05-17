@@ -1,4 +1,6 @@
 package liuyang.testdatambp.modules.actor.generator.mapper;
+import java.util.Date;
+import java.util.List;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -30,6 +32,30 @@ public interface ActorMapper extends BaseMapper<Actor> {
     //      借助MybatisX，可以提供类似使用Spring Data JPA的体验。
     // 3. IntelliJ 快捷键 Alt + Enter 有惊喜！ 只写一个方法名 再按Alt + Enter
     IPage<Actor> selectPageActorVOCustomize(@Param("page") IPage<?> page, String lastName);
+
+    // 通过MybatisX生成
+    // 问题：忘了动态SQL怎么办？
+    // 答：（生成有选择性地添加语句）
+    // step1：写方法名insert, 根据MybatisX插件提示选择insertSelective
+    // step2：双击选中insertSelective（不用选中，挪到上面即可），并右键选择 [MybatisX] Generate Mybatis Sql
+    // step3：查看映射文件ActorMapper.xml文件。有惊喜。
+    int insertSelective(Actor actor);
+
+    // 通过MybatisX生成
+    int deleteByActorId(@Param("actorId") Integer actorId);
+
+    // 通过MybatisX生成
+    int updateFirstNameByActorId(@Param("firstName") String firstName, @Param("actorId") Integer actorId);
+
+    // 通过MybatisX生成
+    // 貌似这个like生成的有点问题。
+    List<Actor> selectByLastNameLike(@Param("lastName") String lastName);
+
+    // 通过MybatisX生成
+    List<Actor> selectAllByLastUpdateBetween(@Param("beginLastUpdate") Date beginLastUpdate, @Param("endLastUpdate") Date endLastUpdate);
+
+    // 通过MybatisX生成
+    List<Actor> selectAllOrderByLastName();
 }
 
 

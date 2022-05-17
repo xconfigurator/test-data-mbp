@@ -45,13 +45,20 @@
         </dependency>
 
         <!-- MyBatis-Plus -->
+        <!-- 分页插件/乐观锁插件 不需要重新导包 -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.5.1</version>
         </dependency>
 
-        <!-- 分页插件 -->
+        <!-- MyBatis-Plus Generator -->
+        <!-- https://www.mybatis-plus.com/guide/generator-new.html -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>3.5.1</version>
+        </dependency>
 
         <!-- Dynamic DataSource -->
         <!-- https://baomidou.com/pages/a61e1b/#%E6%96%87%E6%A1%A3-documentation -->

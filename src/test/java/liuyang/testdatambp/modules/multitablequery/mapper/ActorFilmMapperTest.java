@@ -22,7 +22,7 @@ public class ActorFilmMapperTest {
     // 不带条件多表联查
     @Test
     void testPagination() {
-        IPage<ActorFilm> page = new Page<>(1, 2);
+        IPage<ActorFilm> page = new Page<>(1, 50);
         actorFilmMapper.selectAllPagination(page);
         page.getRecords().stream().forEach(System.out::println);
     }
@@ -31,7 +31,7 @@ public class ActorFilmMapperTest {
     @Test
     void testPaginationCondition() {
         IPage<ActorFilm> page = new Page<>(1, 100);
-        actorFilmMapper.selectAllPaginationCondition(page, "GUINESS");
+        actorFilmMapper.selectAllPaginationCondition(page, "GUINESS");//GUINESS CHASE
         page.getRecords().stream().forEach(System.out::println);
         log.info("page.getTotal() =  {}", page.getTotal());// 这个总记录数貌似有点问题？！ 202204081649
         log.info("page.getRecords().size() = {}", page.getRecords().size());

@@ -51,8 +51,9 @@ spring:
 # 1. @MapperScan -> *Mapper.java
 # 2. mybatis-plus.mapper-locations -> *.xml 或者将*.xml放入默认路径，比如resources/mapper/
 mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #configuration:
+    # 显示SQL
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     #map-underscore-to-camel-case: true
   # 配置默认包前缀
   #type-aliases-package:

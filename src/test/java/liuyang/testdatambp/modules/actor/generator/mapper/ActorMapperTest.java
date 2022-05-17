@@ -48,4 +48,15 @@ public class ActorMapperTest {
         actorMapper.selectPageActorVOCustomize(page, "GUINESS");// E
         page.getRecords().stream().forEach(System.out::println);
     }
+
+    // /////////////////////////////////////////////////////
+    // BaseMapper API
+    @Test
+    void testSelect() {
+        // 没写SQL，但直接可以用！！
+        actorMapper.selectList(null).stream().forEach(System.out::println);
+    }
+
+
+
 }

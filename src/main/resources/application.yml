@@ -6,6 +6,20 @@
 #    password: 123456
 
 # https://baomidou.com/pages/a61e1b/#%E6%96%87%E6%A1%A3-documentation
+
+# 关于驱动
+# useSSL=false
+# characterEncoding=utf-8
+# serverTimezone=GMT%2B8
+# serverTimezone
+# https://dev.mysql.com/doc/connectors/en/connector-j-time-instants.html
+# connectionTimeZone
+# https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-configuration-properties.html
+# java.time.ZoneId
+# https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/ZoneId.html
+# UTC vs GMT
+# https://www.zhihu.com/question/27052407
+# GMT == UTC+0
 spring:
   datasource:
     dynamic:

@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
         @MapperScan("liuyang.testdatambp.modules.user.generated.mapper")
         , @MapperScan("liuyang.testdatambp.modules.actor.generator.mapper")
         , @MapperScan("liuyang.testdatambp.modules.multitablequery.mapper")
+        , @MapperScan("liuyang.testdatambp.modules.actoridsnowflake.mapper")
 })
 public class MybatisPlusConfig {
 

@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Date;
+
 /**
  * @author liuyang(wx)
  * @since 2022/3/25
@@ -57,6 +59,21 @@ public class ActorMapperTest {
         actorMapper.selectList(null).stream().forEach(System.out::println);
     }
 
+    @Test
+    void testInsert() {
+        Actor actor = new Actor();
+        // 【关于主键】 表格该字段是 `actor_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT
+        // 1. 不需要设置
+        // 2. 如果设置了就按照设置的值入库
+        //actor.setActorId(444); // ok
+        // 注：实测（202205181029）如果插入了444这条记录，后面的记录不设置主键值，则新增记录的ID是445。
+        actor.setFirstName("yang");
+        actor.setLastName("liu");
+        actor.setLastUpdate(new Date());
+        int insert = actorMapper.insert(actor);// 影响记录数
+        log.info("影响记录数：insert = {}", insert);
+        log.info("自增主键值：actorId = {}", actor.getActorId());// 【关于获得自增主键值】实测，可以获得自增主键值。
+    }
 
-
+    // 后续例子参考ActorIdSnowflakeMapperTest.java
 }

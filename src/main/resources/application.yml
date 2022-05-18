@@ -51,10 +51,14 @@ spring:
 # 1. @MapperScan -> *Mapper.java
 # 2. mybatis-plus.mapper-locations -> *.xml 或者将*.xml放入默认路径，比如resources/mapper/
 mybatis-plus:
-  #configuration:
+  configuration:
     # 显示SQL
-    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     #map-underscore-to-camel-case: true
+  #global-config:
+  #  db-config:
+       # 配置统一前缀
+  #    table-prefix: t_
   # 配置默认包前缀
   #type-aliases-package:
   # 配置通用枚举包扫描 + @EnumValue 问题（liuyang）: 如果在多个包下配置了enum该怎么办？202204071319

@@ -59,6 +59,8 @@ mybatis-plus:
   #  db-config:
        # 配置统一前缀
   #    table-prefix: t_
+       # 全局id默认生成策略
+  #    id-type: assign_id
   # 配置默认包前缀
   #type-aliases-package:
   # 配置通用枚举包扫描 + @EnumValue 问题（liuyang）: 如果在多个包下配置了enum该怎么办？202204071319

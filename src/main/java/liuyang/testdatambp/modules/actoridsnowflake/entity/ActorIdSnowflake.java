@@ -16,9 +16,11 @@ import lombok.Data;
 @Data
 public class ActorIdSnowflake implements Serializable {
     /**
-     * 
+     * 1. MyBatis-Plus默认会将id字段作为主键。如果表中并没有id字段，则需要使用@TableId注解告诉MyBatis-Plus，哪个是主键。
+     * 2. 若数据库的名称与entity属性不同，可以使用@TableId的value属性予以映射。
+     * 3. 实测默认@TableId的type默认为IdType.ASSIGN_ID即雪花算法。
+     *    若数据库中为自增，需要 @TableId(type = IdType.AUTO)
      */
-    // MyBatis-Plus默认会将id字段作为主键。如果表中并没有id字段，则需要使用@TableId注解告诉MyBatis-Plus，哪个是主键。
     @TableId
     private Long actorId;
 

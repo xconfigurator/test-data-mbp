@@ -11,7 +11,7 @@ import java.util.UUID;
  *        2022/5/16 增加hutool的实现         参考test-mbp项目想干测试用例
  *        2022/5/18 增加MyBatis-Plus的实现   参考test-mbp项目相关测试用例
  */
-public class IdUtils {
+public class Id {
 
     // JDK UUID
     public static String nextTaskId() {

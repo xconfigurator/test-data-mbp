@@ -54,6 +54,7 @@ mybatis-plus:
   configuration:
     # 显示SQL
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 驼峰和下划线映射
     #map-underscore-to-camel-case: true
   #global-config:
   #  db-config:

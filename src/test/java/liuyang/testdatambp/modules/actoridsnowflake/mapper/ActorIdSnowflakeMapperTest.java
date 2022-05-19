@@ -121,9 +121,22 @@ public class ActorIdSnowflakeMapperTest {
 
         LambdaUpdateWrapper<ActorIdSnowflake> actorIdSnowflakeLambdaUpdateWrapper = Wrappers.<ActorIdSnowflake>lambdaUpdate();
         actorIdSnowflakeLambdaUpdateWrapper.eq(ActorIdSnowflake::getLastUpdate, sdf.parse("2022-05-18 13:37:38"));
+        // 其实LambdaWrapper还可以携带需要修改的字段。
+        //actorIdSnowflakeLambdaUpdateWrapper.set()
 
         int i = mapper.update(entity, actorIdSnowflakeLambdaUpdateWrapper);
         log.info("影响记录数：i = {}", i);
+    }
+
+    // 可以通过UpdateWrapper直接设置需要修改的值。这个感觉有点别扭。推荐还是用上面的方法。
+    @Test
+    void testUpdateUpdateDataViaUpdateWrapper() {
+        LambdaUpdateWrapper<ActorIdSnowflake> actorIdSnowflakeLambdaUpdateWrapper = Wrappers.<ActorIdSnowflake>lambdaUpdate();
+        actorIdSnowflakeLambdaUpdateWrapper.eq(ActorIdSnowflake::getActorId, 1526799147463647234l);
+        actorIdSnowflakeLambdaUpdateWrapper.set(ActorIdSnowflake::getFirstName, "yang++-- via UpdateWrapper");
+        // 注意用法
+        int update = mapper.update(null, actorIdSnowflakeLambdaUpdateWrapper);
+        log.info("影响记录数 = {}", update);
     }
 
     // 查
@@ -191,4 +204,26 @@ public class ActorIdSnowflakeMapperTest {
         mapper.selectList(null).stream().forEach(System.out::println);
     }
 
+    // 投影
+    // 条件构造器.select() 配合 mapper.selectMaps 非常方便！
+    @Test
+    void testSelectMaps() {
+        LambdaQueryWrapper<ActorIdSnowflake> actorIdSnowflakeLambdaQueryWrapper = Wrappers.<ActorIdSnowflake>lambdaQuery();
+        actorIdSnowflakeLambdaQueryWrapper.select(ActorIdSnowflake::getActorId, ActorIdSnowflake::getFirstName);
+
+        List<Map<String, Object>> maps = mapper.selectMaps(actorIdSnowflakeLambdaQueryWrapper);
+        maps.stream().limit(5).forEach(System.out::println);
+    }
+
+    // 演示一个子查询
+    // 需求：列出actorId < 10的用户信息
+    @Test
+    void testSelectListSubquery() {
+        // 注：使用子查询的场景可以考虑优先使用*Mapper.xml的方案。
+        LambdaQueryWrapper<ActorIdSnowflake> actorIdSnowflakeLambdaQueryWrapper = Wrappers.<ActorIdSnowflake>lambdaQuery();
+        actorIdSnowflakeLambdaQueryWrapper.inSql(ActorIdSnowflake::getActorId, "select actor_id from actor_id_snowflake where actor_id <= 10");// 注意，如果自己写SQL需要考虑到逻辑删除字段，则框架不再自动处理。没有逻辑删除需求则忽略即可。
+
+        List<ActorIdSnowflake> actorIdSnowflakes = mapper.selectList(actorIdSnowflakeLambdaQueryWrapper);
+        actorIdSnowflakes.stream().forEach(System.out::println);
+    }
 }

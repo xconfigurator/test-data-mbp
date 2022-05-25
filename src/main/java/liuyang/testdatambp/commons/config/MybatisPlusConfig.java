@@ -39,4 +39,17 @@ public class MybatisPlusConfig {
         return interceptor;
     }
 
+    // 性能分析插件，开发调试环境使用
+    /*
+    //@Bean
+    public PerformanceInterceptor performanceInterceptor() {
+        PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
+        // maxTime 指的是 sql 最大执行时长
+        final int maxTime = 5000;
+        performanceInterceptor.setMaxTime(maxTime);
+        //SQL是否格式化 默认false
+        performanceInterceptor.setFormat(true);
+        return performanceInterceptor;
+    }
+     */
 }

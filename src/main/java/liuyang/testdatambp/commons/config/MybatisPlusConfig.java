@@ -14,12 +14,17 @@ import org.springframework.context.annotation.Configuration;
  * @since 2022/3/25
  */
 @Configuration
+// 包扫描方法1: ok
+/*
 @MapperScans({
         @MapperScan("liuyang.testdatambp.modules.user.generated.mapper")
         , @MapperScan("liuyang.testdatambp.modules.actor.generator.mapper")
         , @MapperScan("liuyang.testdatambp.modules.multitablequery.mapper")
         , @MapperScan("liuyang.testdatambp.modules.actoridsnowflake.mapper")
 })
+ */
+// 包扫描方法2：另一个参考的写法@MapperScan("foo.bar.**.mapper")
+@MapperScan("liuyang.testdatambp.modules.**.mapper")// 20220525 ok
 public class MybatisPlusConfig {
 
     @Bean

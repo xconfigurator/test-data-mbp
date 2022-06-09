@@ -10,7 +10,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Comparator;
 import java.util.Date;
+import java.util.Optional;
 
 /**
  * @author liuyang(wx)
@@ -57,6 +59,15 @@ public class ActorMapperTest {
     void testSelect() {
         // 没写SQL，但直接可以用！！
         actorMapper.selectList(null).stream().forEach(System.out::println);
+    }
+
+    @Test
+    void testSelectWithJavaStreamAPI() {
+        Optional<Actor> max = actorMapper.selectList(null).stream().max(Comparator.comparing(Actor::getActorId));
+        if (max.isPresent()) {
+            System.out.println(max.get().getActorId());
+            System.out.println(max.get());
+        }
     }
 
     @Test

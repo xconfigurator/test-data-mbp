@@ -19,7 +19,7 @@ public class ActorFilm {
     private Date lastUpdate;
     // Film
     private String title;
-    private String description;
+    private String description;// 实测可以只接检索结果的部分结果集，注释掉这个字段仍然正常运行测试用例
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

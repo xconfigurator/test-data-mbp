@@ -26,7 +26,8 @@
             resultType="liuyang.testdatambp.modules.actor.generator.entity.Actor">
         select * from actor where last_name like concat('%', #{lastName}, '%')
     </select>
-    <insert id="insertSelective">
+    <!-- 获取自增主键值 -->
+    <insert id="insertSelective" useGeneratedKeys="true" keyColumn="actor_id">
         insert into actor
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="actorId != null">actor_id,</if>
@@ -116,6 +117,11 @@
     <!-- 投影 -->
     <select id="selectProjectionMapKey" resultType="java.util.Map">
         select actor_id, last_update from actor
+    </select>
+
+    <!-- 动态指定表名称 -->
+    <select id="selectByTableName" resultType="java.util.Map">
+        select * from ${tableName}
     </select>
 
 </mapper>

@@ -95,6 +95,17 @@ public class ActorMapperTest {
         actors.stream().forEach(System.out::println);
     }
 
+    // 动态指定表名称
+    // 分表场景
+    @Test
+    void testSelectByTableName() {
+        List<Map<String, Object>> actors = actorMapper.selectByTableName("actor");
+        actors.stream().forEach(System.out::println);
+
+        List<Map<String, Object>> citys = actorMapper.selectByTableName("city");
+        citys.stream().forEach(System.out::println);
+    }
+
     @Test
     void testCountByActorId() {
         int i = actorMapper.countByActorId();

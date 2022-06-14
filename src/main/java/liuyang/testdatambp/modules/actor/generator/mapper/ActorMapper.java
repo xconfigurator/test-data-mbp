@@ -86,6 +86,10 @@ public interface ActorMapper extends BaseMapper<Actor> {
     //@MapKey("actor_idx")// 运行时并不抛异常
     @MapKey("actor_id")// ok
     Map<String, Object> selectProjectionMapKey();
+
+    // 动态设置表名
+    @MapKey("id")// 并不是每个表都有id，当然写错了也不影响。
+    List<Map<String, Object>> selectByTableName(@Param("tableName") String tableName);
 }
 
 

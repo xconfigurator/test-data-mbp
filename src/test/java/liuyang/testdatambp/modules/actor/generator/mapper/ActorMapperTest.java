@@ -129,7 +129,8 @@ public class ActorMapperTest {
         log.info("自增主键值：actorId = {}", actor.getActorId());// 【关于获得自增主键值】实测，可以获得自增主键值。（应该是MyBatis-Plus配置好的）
     }
 
-    @Test
+    //@Test
+    @RepeatedTest(2)
     void testInsertSelective() {
         Actor actor = new Actor();
         // 【关于主键】 表格该字段是 `actor_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT
@@ -137,17 +138,20 @@ public class ActorMapperTest {
         // 2. 如果设置了就按照设置的值入库
         //actor.setActorId(444); // ok
         // 注：实测（202205181029）如果插入了444这条记录，后面的记录不设置主键值，则新增记录的ID是445。
-        actor.setFirstName("yang");
+        actor.setFirstName("yangxx");
         actor.setLastName("liu");
         actor.setLastUpdate(new Date());
-        int insert = actorMapper.insert(actor);// 影响记录数
+        int insert = actorMapper.insertSelective(actor);// 影响记录数
         log.info("影响记录数：insert = {}", insert);
         log.info("自增主键值：actorId = {}", actor.getActorId());// 【关于获得自增主键值】实测，可以获得自增主键值。注意需要配置！
     }
 
     @Test
     void testDeleteInBatch() {
-        List<Integer> actorIds = Arrays.asList(444, 445, 446);
+        // 444, 445, 446
+        // 447,448,449,450,451,452,453
+        //
+        List<Integer> actorIds = Arrays.asList(447,448,449,450,451,452,453);
         int deleted = actorMapper.deleteInBatch(actorIds);
         log.info("影响记录数：deleted = {}", deleted);
     }

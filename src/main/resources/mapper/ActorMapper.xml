@@ -26,8 +26,9 @@
             resultType="liuyang.testdatambp.modules.actor.generator.entity.Actor">
         select * from actor where last_name like concat('%', #{lastName}, '%')
     </select>
-    <!-- 获取自增主键值 -->
-    <insert id="insertSelective" useGeneratedKeys="true" keyColumn="actor_id">
+    <!-- 获取自增主键值 useGeneratedKeys="true" keyProperty="actorId" -->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="actorId"><!-- ok 20220614 注意是keyProperty-->
+    <!--<insert id="insertSelective" useGeneratedKeys="true" keyColumn="actor_id">--><!-- failure 20220614 -->
         insert into actor
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="actorId != null">actor_id,</if>

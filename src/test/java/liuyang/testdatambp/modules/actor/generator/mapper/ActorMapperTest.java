@@ -87,6 +87,7 @@ public class ActorMapperTest {
         log.info("result = {}", stringObjectMap);
     }
 
+    // 模糊查询！！！！
     @Test
     void testSelectByLastNameLike() {
         List<Actor> actors = actorMapper.selectByLastNameLike("AK");

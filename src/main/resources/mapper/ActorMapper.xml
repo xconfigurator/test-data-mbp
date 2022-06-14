@@ -57,12 +57,17 @@
         select
         <include refid="Base_Column_List"/>
         from actor
+        <!-- 方案1 20220614 ok-->
         <where>
             <if test="lastName != null and lastName != ''">
                 <bind name="lastNameLike" value="'%' + lastName + '%'"></bind>
                 last_name like #{lastNameLike,jdbcType=VARCHAR}
             </if>
         </where>
+        <!-- 方案2 20220614 ok-->
+        <!-- where last_name like "%"#{lastName,jdbcType=VARCHAR}"%"-->
+        <!-- 方案3 20220614 ok-->
+        <!-- where last_name like concat('%', #{lastName,jdbcType=VARCHAR}, '%') -->
     </select>
     <select id="selectAllByLastUpdateBetween" resultMap="BaseResultMap">
         select

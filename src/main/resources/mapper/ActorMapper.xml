@@ -47,12 +47,21 @@
         from actor
         where actor_id = #{actorId,jdbcType=NUMERIC}
     </delete>
+    <!-- 批量删除 20220614 add -->
+    <delete id="deleteInBatch">
+        delete
+        from actor
+        where actor_id in
+        <foreach collection="actorIds" item="actorId" open="(" close=")" separator=",">
+            #{actorId}
+        </foreach>
+    </delete>
     <update id="updateFirstNameByActorId">
         update actor
         set first_name = #{firstName,jdbcType=VARCHAR}
         where actor_id = #{actorId,jdbcType=NUMERIC}
     </update>
-    <!-- 演示一下like的标准推荐写法 -->
+    <!-- 演示一下like的标准推荐写法 20220614 add-->
     <select id="selectByLastNameLike" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

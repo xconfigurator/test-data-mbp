@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import liuyang.testdatambp.modules.actor.generator.entity.Actor;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -100,7 +101,8 @@ public class ActorMapperTest {
         log.info("actor quantity = {}", i);
     }
 
-    @Test
+    //@Test
+    @RepeatedTest(4)
     void testInsert() {
         Actor actor = new Actor();
         // 【关于主键】 表格该字段是 `actor_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT
@@ -114,6 +116,13 @@ public class ActorMapperTest {
         int insert = actorMapper.insert(actor);// 影响记录数
         log.info("影响记录数：insert = {}", insert);
         log.info("自增主键值：actorId = {}", actor.getActorId());// 【关于获得自增主键值】实测，可以获得自增主键值。
+    }
+
+    @Test
+    void testDeleteInBatch() {
+        List<Integer> actorIds = Arrays.asList(444, 445, 446);
+        int deleted = actorMapper.deleteInBatch(actorIds);
+        log.info("影响记录数：deleted = {}", deleted);
     }
 
     // 后续例子参考ActorIdSnowflakeMapperTest.java

@@ -45,6 +45,8 @@ public interface ActorMapper extends BaseMapper<Actor> {
     // 通过MybatisX生成
     int deleteByActorId(@Param("actorId") Integer actorId);
 
+    int deleteInBatch(@Param("actorIds") List<Integer> actorIds);
+
     // 通过MybatisX生成
     int updateFirstNameByActorId(@Param("firstName") String firstName, @Param("actorId") Integer actorId);
 

@@ -10,9 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Comparator;
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * @author liuyang(wx)
@@ -68,6 +66,37 @@ public class ActorMapperTest {
             System.out.println(max.get().getActorId());
             System.out.println(max.get());
         }
+    }
+
+    @Test
+    void testSelectProjection() {
+        List<Map<String, Object>> maps = actorMapper.selectProjection();
+        maps.stream().forEach(stringObjectMap -> log.info("result = {}", stringObjectMap));
+        log.info("maps = {}", maps);
+    }
+
+    @Test
+    void testSelectProejctionById() {
+        Map<String, Object> result = actorMapper.selectProjectionById(1);
+        log.info("result = {}", result);
+    }
+
+    @Test
+    void testSelectProjectionMapKey() {
+        Map<String, Object> stringObjectMap = actorMapper.selectProjectionMapKey();
+        log.info("result = {}", stringObjectMap);
+    }
+
+    @Test
+    void testSelectByLastNameLike() {
+        List<Actor> actors = actorMapper.selectByLastNameLike("AK");
+        actors.stream().forEach(System.out::println);
+    }
+
+    @Test
+    void testCountByActorId() {
+        int i = actorMapper.countByActorId();
+        log.info("actor quantity = {}", i);
     }
 
     @Test

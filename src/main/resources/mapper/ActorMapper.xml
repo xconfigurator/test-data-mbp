@@ -52,12 +52,17 @@
         set first_name = #{firstName,jdbcType=VARCHAR}
         where actor_id = #{actorId,jdbcType=NUMERIC}
     </update>
+    <!-- 演示一下like的标准推荐写法 -->
     <select id="selectByLastNameLike" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from actor
-        where
-        last_name like #{lastName,jdbcType=VARCHAR}
+        <where>
+            <if test="lastName != null and lastName != ''">
+                <bind name="lastNameLike" value="'%' + lastName + '%'"></bind>
+                last_name like #{lastNameLike,jdbcType=VARCHAR}
+            </if>
+        </where>
     </select>
     <select id="selectAllByLastUpdateBetween" resultMap="BaseResultMap">
         select
@@ -72,4 +77,31 @@
         from actor
         order by lastName
     </select>
+
+    <!-- 可以参考官方文档的typeAlias一节 -->
+    <!-- int string list arraylist map hashmap ... 基本全都小写即可 -->
+    <select id="countByActorId" resultType="java.lang.Integer"><!-- 20220614 ok -->
+    <!--<select id="countByActorId" resultType="Integer">--><!-- 20220614 ok -->
+    <!--<select id="countByActorId" resultType="integer">--><!-- 20220614 ok -->
+    <!--<select id="countByActorId" resultType="Int">--><!-- 20220614 ok -->
+    <!--<select id="countByActorId" resultType="int">--><!-- 20220614 ok -->
+    <!--<select id="countByActorId" resultType="string">--><!-- 20220614 failure -->
+        select count(actor_id) from actor
+    </select>
+
+    <!-- 投影 -->
+    <select id="selectProjection" resultType="java.util.Map">
+        select actor_id, last_update from actor
+    </select>
+
+    <!-- 投影 单条 -->
+    <select id="selectProjectionById" resultType="map">
+        select actor_id, last_update from actor where actor_id = #{actorId}
+    </select>
+
+    <!-- 投影 -->
+    <select id="selectProjectionMapKey" resultType="java.util.Map">
+        select actor_id, last_update from actor
+    </select>
+
 </mapper>

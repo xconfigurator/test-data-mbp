@@ -1,15 +1,16 @@
 package liuyang.testdatambp.modules.actor.generator.mapper;
-import java.util.Date;
-import java.util.List;
 
 import com.baomidou.dynamic.datasource.annotation.DS;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import liuyang.testdatambp.modules.actor.generator.entity.Actor;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Mapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import liuyang.testdatambp.modules.actor.generator.entity.Actor;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
 * @author xconf
@@ -56,6 +57,32 @@ public interface ActorMapper extends BaseMapper<Actor> {
 
     // 通过MybatisX生成
     List<Actor> selectAllOrderByLastName();
+
+    // 聚合查询
+    int countByActorId();
+
+    // 投影
+    // 若不指定@MapKey，IntelliJ会报错，但不影响程序运行
+    //@MapKey("actor_idx")// 20220614 写成这样运行都不报错，这个@MapKey到底啥用途？
+    @MapKey("actor_id")
+    // 经测，貌似这个加不加@MapKey以及标注的的@MapKey是什么内容没有什么区别。
+    List<Map<String, Object>> selectProjection();
+
+    // 投影
+    // 若不指定@MapKey，IntelliJ会报错，但不影响程序运行
+    //@MapKey("actor_idxx")// 20220614 写成这样运行都不报错，这个@MapKey到底啥用途？ 看运行结果就知道
+    @MapKey("actor_id")
+    Map<String, Object> selectProjectionById(@Param("actorId") int actorId);
+    //@MapKey("actor_idxx")
+    // 2022-06-14 17:38:02.680  INFO 12596 --- [           main] l.t.m.a.g.mapper.ActorMapperTest         : result = {null={last_update=2006-02-15 04:34:33.0, actor_id=1}}
+    //@MapKey("actor_id")
+    // 2022-06-14 17:36:35.165  INFO 9500 --- [           main] l.t.m.a.g.mapper.ActorMapperTest         : result = {1={last_update=2006-02-15 04:34:33.0, actor_id=1}}
+
+    // 投影
+    // 运行一下这个方法的单测，看一下返回就知道@MapKey到底是干啥的了
+    //@MapKey("actor_idx")// 运行时并不抛异常
+    @MapKey("actor_id")// ok
+    Map<String, Object> selectProjectionMapKey();
 }
 
 

@@ -19,7 +19,7 @@ import lombok.EqualsAndHashCode;
 @ApiModel(value="User对象", description="")
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;// 必须实现序列化接口，以便缓存。
 
     @ApiModelProperty(value = "主键ID")
     private Long id;

@@ -17,5 +17,4 @@ public class ActorIdSnowflakeMapperMyBatisAPITest {
     @Autowired
     private ActorIdSnowflakeMapper mapper;
 
-
 }

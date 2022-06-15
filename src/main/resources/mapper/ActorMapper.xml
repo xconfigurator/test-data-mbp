@@ -4,6 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="liuyang.testdatambp.modules.actor.generator.mapper.ActorMapper">
 
+    <!--
+    1. 在不改变实体类属性和表字段的前提下进行映射。
+    2. 用于处理1:1 1:N映射。
+    -->
     <resultMap id="BaseResultMap" type="liuyang.testdatambp.modules.actor.generator.entity.Actor">
             <id property="actorId" column="actor_id" jdbcType="SMALLINT"/>
             <result property="firstName" column="first_name" jdbcType="VARCHAR"/>
@@ -16,16 +20,6 @@
         last_update
     </sql>
 
-    <!-- IPage<Actor> selectPageActorVOCustomize(@Param("page") IPage<?> page, String lastName); -->
-    <!--
-        可以设置类型别名 application.yml mybatis-plus.type-aliases-package:
-        设置好之后就可以使用类名，且不区分大小写。
-        20220407 实测 ok
-    -->
-    <select id="selectPageActorVOCustomize"
-            resultType="liuyang.testdatambp.modules.actor.generator.entity.Actor">
-        select * from actor where last_name like concat('%', #{lastName}, '%')
-    </select>
     <!-- 获取自增主键值 useGeneratedKeys="true" keyProperty="actorId" -->
     <insert id="insertSelective" useGeneratedKeys="true" keyProperty="actorId"><!-- ok 20220614 注意是keyProperty-->
     <!--<insert id="insertSelective" useGeneratedKeys="true" keyColumn="actor_id">--><!-- failure 20220614 -->
@@ -44,11 +38,13 @@
             <if test="lastUpdate != null">#{lastUpdate,jdbcType=TIMESTAMP},</if>
         </trim>
     </insert>
+
     <delete id="deleteByActorId">
         delete
         from actor
         where actor_id = #{actorId,jdbcType=NUMERIC}
     </delete>
+
     <!-- 批量删除 20220614 add -->
     <delete id="deleteInBatch">
         delete
@@ -58,11 +54,24 @@
             #{actorId}
         </foreach>
     </delete>
+
     <update id="updateFirstNameByActorId">
         update actor
         set first_name = #{firstName,jdbcType=VARCHAR}
         where actor_id = #{actorId,jdbcType=NUMERIC}
     </update>
+
+    <!-- IPage<Actor> selectPageActorVOCustomize(@Param("page") IPage<?> page, String lastName); -->
+    <!--
+        可以设置类型别名 application.yml mybatis-plus.type-aliases-package:
+        设置好之后就可以使用类名，且不区分大小写。
+        20220407 实测 ok
+    -->
+    <select id="selectPageActorVOCustomize"
+            resultType="liuyang.testdatambp.modules.actor.generator.entity.Actor">
+        select * from actor where last_name like concat('%', #{lastName}, '%')
+    </select>
+
     <!-- 演示一下like的标准推荐写法 20220614 add-->
     <select id="selectByLastNameLike" resultMap="BaseResultMap">
         select
@@ -80,6 +89,7 @@
         <!-- 方案3 20220614 ok-->
         <!-- where last_name like concat('%', #{lastName,jdbcType=VARCHAR}, '%') -->
     </select>
+
     <select id="selectAllByLastUpdateBetween" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -87,6 +97,7 @@
         where
         last_update between #{beginLastUpdate} and #{endLastUpdate}
     </select>
+
     <select id="selectAllOrderByLastName" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

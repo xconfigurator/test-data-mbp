@@ -57,6 +57,10 @@ mybatis-plus:
     # 显示SQL
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     # 驼峰和下划线映射
+    # 解决字段映射的三个位置：
+    # 1. 在Mapper.xml中给SELECT投影列起别名。
+    # 2. 全局配置map-underscore-to-camel-case: true。在原生MyBatis中是存在于mybatis-config.xml中settings标签里。
+    # 3. 在Mapper.xml中使用resultMap进行映射。
     #map-underscore-to-camel-case: true
   #global-config:
   #  db-config:

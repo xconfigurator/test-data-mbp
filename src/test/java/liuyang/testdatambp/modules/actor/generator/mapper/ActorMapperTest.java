@@ -2,7 +2,9 @@ package liuyang.testdatambp.modules.actor.generator.mapper;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import liuyang.testdatambp.modules.actor.TxService;
 import liuyang.testdatambp.modules.actor.generator.entity.Actor;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -21,6 +23,18 @@ public class ActorMapperTest {
 
     @Autowired
     private ActorMapper actorMapper;// 在ActorMapper上添加@Repository注解即可消除IDEA报错。但实际上不加，运行时也不会出现异常。
+
+    @Autowired
+    TxService txService;
+
+    @Test
+    void test20226241119() {
+        try {
+            txService.foo();
+        } catch (Exception e) {
+            log.error("我在这里也能捕获到");
+        }
+    }
 
     @Test
     public void testPagination() {

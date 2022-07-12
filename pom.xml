@@ -120,6 +120,21 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.6</version>
+        </dependency>
+
+        <!-- FastJSON -->
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <!--<version>1.2.76</version>-->
+            <version>1.2.83</version><!-- 小于80的版本爆出安全漏洞 liuyang 20220606 upgrade-->
+        </dependency>
     </dependencies>
 
     <build>

@@ -39,7 +39,7 @@ public class MybatisPlusConfig {
         // 乐观锁插件（不需要额外加pom.xml依赖） + @Version （如果冲突，第二条不会被执行，可以通过更新语句返回的影响条数来进行判断）
         // doc: https://baomidou.com/pages/0d93c0/
         interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
-        // sql性能规范
+        // sql性能规范（生产环境不要用！）
         interceptor.addInnerInterceptor(new IllegalSQLInnerInterceptor());
         return interceptor;
     }

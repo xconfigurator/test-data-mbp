@@ -95,7 +95,6 @@ public class ActorIdSnowflakeMapperTest {
 
         LambdaUpdateWrapper<ActorIdSnowflake> actorIdSnowflakeLambdaUpdateWrapper = Wrappers.<ActorIdSnowflake>lambdaUpdate();
         actorIdSnowflakeLambdaUpdateWrapper.eq(ActorIdSnowflake::getLastUpdate, sdf.parse("2022-05-18 13:33:00"));
-
         int i = mapper.delete(actorIdSnowflakeLambdaUpdateWrapper);
         log.info("影响记录数：i = {}", i);
     }

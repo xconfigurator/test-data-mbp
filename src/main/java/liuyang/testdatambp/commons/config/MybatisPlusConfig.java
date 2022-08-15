@@ -40,7 +40,7 @@ public class MybatisPlusConfig {
         // doc: https://baomidou.com/pages/0d93c0/
         interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
         // sql性能规范（生产环境不要用！）
-        interceptor.addInnerInterceptor(new IllegalSQLInnerInterceptor());
+        //interceptor.addInnerInterceptor(new IllegalSQLInnerInterceptor());
         return interceptor;
     }
 

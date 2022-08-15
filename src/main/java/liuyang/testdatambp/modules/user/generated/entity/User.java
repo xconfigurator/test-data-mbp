@@ -1,6 +1,9 @@
 package liuyang.testdatambp.modules.user.generated.entity;
 
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -24,6 +27,7 @@ public class User implements Serializable {
     @ApiModelProperty(value = "主键ID")
     private Long id;
 
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     @ApiModelProperty(value = "姓名")
     private String name;
 
